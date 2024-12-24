@@ -19,6 +19,8 @@ use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -121,12 +123,19 @@ class BoardingHouseResource extends Resource
         return $table
             ->columns([
                 //
+                ImageColumn::make('thumbnail'),
+                TextColumn::make('price'),
+                TextColumn::make('name'),
+                TextColumn::make('city.name'),
+                TextColumn::make('category.name'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
