@@ -14,6 +14,7 @@ use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -22,6 +23,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
+
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 class BoardingHouseResource extends Resource
 {
@@ -72,20 +76,41 @@ class BoardingHouseResource extends Resource
                     ->schema([
                         //
                         Repeater::make('bonuses')
-                        ->schema([
-                            FileUpload::make('image')
-                            ->image()
-                            ->directory('bonuses')
-                            ->required()
-                            ->columnSpan(2),
-                            TextInput::make('name')->required(),
-                            TextInput::make('description')->required(),
-                        ])
-                        ->columns(2)
+                            ->relationship('bonuses')
+                            ->schema([
+                                FileUpload::make('image')
+                                ->image()
+                                ->directory('bonuses')
+                                ->required()
+                                ->columnSpan(2),
+                                TextInput::make('name')->required(),
+                                TextInput::make('description')->required(),
+                            ])
+                            ->columns(2)
                     ]),
-                    Tab::make('Tab 3')
+                    Tab::make('Kamar')
                     ->schema([
                         //
+                        Repeater::make('rooms')
+                            ->relationship('rooms')
+                            ->schema([
+                                TextInput::make('name')->required(),
+                                TextInput::make('room_type')->required(),
+                                TextInput::make('square_feet')->numeric()->suffix('m')->required(),
+                                TextInput::make('price_per_month')
+                                ->numeric()
+                                ->prefix('IDR')
+                                ->required(),
+                                Toggle::make('is_available')->required(),
+                                Repeater::make('images')
+                                    ->relationship('images')
+                                    ->schema([
+                                        FileUpload::make('image')
+                                        ->image()
+                                        ->directory('room_images')
+                                        ->required(),
+                                    ]),
+                            ])
                     ]),
                 ])->columnSpan(2)
             ]);
