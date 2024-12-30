@@ -26,6 +26,8 @@ class TestimonialResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Boarding House Management'; 
+
     public static function form(Form $form): Form
     {
         return $form
