@@ -6,14 +6,14 @@
     </div>
     <div class="relative flex flex-col gap-[30px] my-[60px] px-5">
         <h1 class="font-bold text-[30px] leading-[45px] text-center">Explore Our<br>Beautiful Koskos</h1>
-        <form action="search-result.html" class="flex flex-col rounded-[30px] border border-[#F1F2F6] p-5 gap-6 bg-white">
+        <form action="{{ route('find-kost.results') }}" class="flex flex-col rounded-[30px] border border-[#F1F2F6] p-5 gap-6 bg-white">
             <div id="InputContainer" class="flex flex-col gap-[18px]">
                 <div class="flex flex-col w-full gap-2">
                     <p class="font-semibold">Name</p>
                     <label
                         class="flex items-center w-full rounded-full p-[14px_20px] gap-3 bg-white ring-1 ring-[#F1F2F6] focus-within:ring-[#91BF77] transition-all duration-300">
                         <img src="assets/images/icons/note-favorite-grey.svg" class="w-5 h-5 flex shrink-0" alt="icon">
-                        <input type="text" name="" id=""
+                        <input type="text" name="search" id=""
                             class="appearance-none outline-none w-full font-semibold placeholder:text-ngekos-grey placeholder:font-normal"
                             placeholder="Type the koskos name">
                     </label>
@@ -27,7 +27,7 @@
                         <select name="city" id="" class="appearance-none outline-none w-full bg-white pl-8">
                             <option value="" hidden>Select city</option>
                             @foreach ($cities as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                <option value="{{ $city->slug }}">{{ $city->name }}</option>
                             @endforeach
                         </select>
                         <img src="assets/images/icons/arrow-down.svg" class="w-5 h-5" alt="icon">
@@ -42,7 +42,7 @@
                         <select name="category" id="" class="appearance-none outline-none w-full bg-white pl-8">
                             <option value="" hidden>Select category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option> 
+                                <option value="{{ $category->slug }}">{{ $category->name }}</option> 
                             @endforeach
                         </select>
                         <img src="assets/images/icons/arrow-down.svg" class="w-5 h-5" alt="icon">
