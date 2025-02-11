@@ -26,7 +26,7 @@
                             </div>
                             <div class="flex flex-col gap-[2px]">
                                 <h3 class="font-semibold">{{ $category->name }}</h3>
-                                <p class="text-sm text-ngekos-grey">1,304 Kos</p>
+                                <p class="text-sm text-ngekos-grey">{{ $category->boardingHouses->count() }}</p>
                             </div>
                         </div>
                     </a>
@@ -52,11 +52,12 @@
                             <div
                                 class="flex flex-col w-[250px] shrink-0 rounded-[30px] border border-[#F1F2F6] p-4 pb-5 gap-[10px] hover:border-[#91BF77] transition-all duration-300">
                                 <div class="flex w-full h-[150px] shrink-0 rounded-[30px] bg-[#D9D9D9] overflow-hidden">
-                                    <img src="{{ Storage::url($popularBoardingHouse->thumbnail) }}" class="w-full h-full object-cover"
-                                        alt="thumbnail">
+                                    <img src="{{ Storage::url($popularBoardingHouse->thumbnail) }}"
+                                        class="w-full h-full object-cover" alt="thumbnail">
                                 </div>
                                 <div class="flex flex-col gap-3">
-                                    <h3 class="font-semibold text-lg leading-[27px] line-clamp-2 min-h-[54px]">{{ $popularBoardingHouse->name }}</h3>
+                                    <h3 class="font-semibold text-lg leading-[27px] line-clamp-2 min-h-[54px]">
+                                        {{ $popularBoardingHouse->name }}</h3>
                                     <hr class="border-[#F1F2F6]">
                                     <div class="flex items-center gap-[6px]">
                                         <img src="assets/images/icons/location.svg" class="w-5 h-5 flex shrink-0"
@@ -66,7 +67,8 @@
                                     <div class="flex items-center gap-[6px]">
                                         <img src="assets/images/icons/3dcube.svg" class="w-5 h-5 flex shrink-0"
                                             alt="icon">
-                                        <p class="text-sm text-ngekos-grey">In {{ $popularBoardingHouse->category->name }}</p>
+                                        <p class="text-sm text-ngekos-grey">In {{ $popularBoardingHouse->category->name }}
+                                        </p>
                                     </div>
                                     <div class="flex items-center gap-[6px]">
                                         <img src="assets/images/icons/profile-2user.svg" class="w-5 h-5 flex shrink-0"
@@ -74,7 +76,8 @@
                                         <p class="text-sm text-ngekos-grey">4 People</p>
                                     </div>
                                     <hr class="border-[#F1F2F6]">
-                                    <p class="font-semibold text-lg text-ngekos-orange">Rp {{ $popularBoardingHouse->price }}<span
+                                    <p class="font-semibold text-lg text-ngekos-orange">Rp
+                                        {{ number_format($popularBoardingHouse->price, 0, ',', '.') }}<span
                                             class="text-sm text-ngekos-grey font-normal">/bulan</span></p>
                                 </div>
                             </div>
@@ -95,22 +98,21 @@
             </a>
         </div>
         <div class="grid grid-cols-2 gap-4">
-        @foreach ($cities as $city)
-            <a href="cities.html" class="card">
-                <div
-                    class="flex items-center rounded-[22px] p-[10px] gap-3 bg-white border border-white overflow-hidden hover:border-[#91BF77] transition-all duration-300">
+            @foreach ($cities as $city)
+                <a href="cities.html" class="card">
                     <div
-                        class="w-[55px] h-[55px] flex shrink-0 rounded-full border-4 border-white ring-1 ring-[#F1F2F6] overflow-hidden">
-                        <img src="{{ Storage::url($city->image) }}" class="w-full h-full object-cover" alt="icon">
+                        class="flex items-center rounded-[22px] p-[10px] gap-3 bg-white border border-white overflow-hidden hover:border-[#91BF77] transition-all duration-300">
+                        <div
+                            class="w-[55px] h-[55px] flex shrink-0 rounded-full border-4 border-white ring-1 ring-[#F1F2F6] overflow-hidden">
+                            <img src="{{ Storage::url($city->image) }}" class="w-full h-full object-cover" alt="icon">
+                        </div>
+                        <div class="flex flex-col gap-[2px]">
+                            <h3 class="font-semibold">{{ $city->name }}</h3>
+                            <p class="text-sm text-ngekos-grey">{{ $city->BoardingHouses->count() }}</p>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-[2px]">
-                        <h3 class="font-semibold">{{ $city->name }}</h3>
-                        <p class="text-sm text-ngekos-grey">1,304 Kos</p>
-                    </div>
-                </div>
-            </a>
-            
-        @endforeach
+                </a>
+            @endforeach
         </div>
     </section>
     <section id="Best" class="flex flex-col gap-4 px-5 mt-[30px]">
@@ -124,56 +126,35 @@
             </a>
         </div>
         <div class="flex flex-col gap-4">
-        @foreach ($boardingHouses as $boardingHouse)
-            
-            <a href="details.html" class="card">
-                <div
-                    class="flex rounded-[30px] border border-[#F1F2F6] p-4 gap-4 bg-white hover:border-[#91BF77] transition-all duration-300">
-                    <div class="flex w-[120px] h-[183px] shrink-0 rounded-[30px] bg-[#D9D9D9] overflow-hidden">
-                        <img src="{{ Storage::url($boardingHouse->thumbnail) }}" class="w-full h-full object-cover" alt="icon">
-                    </div>
-                    <div class="flex flex-col gap-3 w-full">
-                        <h3 class="font-semibold text-lg leading-[27px] line-clamp-2 min-h-[54px]">{{ $boardingHouse->name }}</h3>
-                        <hr class="border-[#F1F2F6]">
-                        <div class="flex items-center gap-[6px]">
-                            <img src="assets/images/icons/location.svg" class="w-5 h-5 flex shrink-0" alt="icon">
-                            <p class="text-sm text-ngekos-grey">{{ $boardingHouse->city->name }}</p>
-                        </div>
-                        <div class="flex items-center gap-[6px]">
-                            <img src="assets/images/icons/profile-2user.svg" class="w-5 h-5 flex shrink-0"
+            @foreach ($boardingHouses as $boardingHouse)
+                <a href="details.html" class="card">
+                    <div
+                        class="flex rounded-[30px] border border-[#F1F2F6] p-4 gap-4 bg-white hover:border-[#91BF77] transition-all duration-300">
+                        <div class="flex w-[120px] h-[183px] shrink-0 rounded-[30px] bg-[#D9D9D9] overflow-hidden">
+                            <img src="{{ Storage::url($boardingHouse->thumbnail) }}" class="w-full h-full object-cover"
                                 alt="icon">
-                            <p class="text-sm text-ngekos-grey">4 People</p>
                         </div>
-                        <hr class="border-[#F1F2F6]">
-                        <p class="font-semibold text-lg text-ngekos-orange">{{ $boardingHouse->price }}<span
-                                class="text-sm text-ngekos-grey font-normal">/bulan</span></p>
+                        <div class="flex flex-col gap-3 w-full">
+                            <h3 class="font-semibold text-lg leading-[27px] line-clamp-2 min-h-[54px]">
+                                {{ $boardingHouse->name }}</h3>
+                            <hr class="border-[#F1F2F6]">
+                            <div class="flex items-center gap-[6px]">
+                                <img src="assets/images/icons/location.svg" class="w-5 h-5 flex shrink-0" alt="icon">
+                                <p class="text-sm text-ngekos-grey">{{ $boardingHouse->city->name }}</p>
+                            </div>
+                            <div class="flex items-center gap-[6px]">
+                                <img src="assets/images/icons/profile-2user.svg" class="w-5 h-5 flex shrink-0"
+                                    alt="icon">
+                                <p class="text-sm text-ngekos-grey">4 People</p>
+                            </div>
+                            <hr class="border-[#F1F2F6]">
+                            <p class="font-semibold text-lg text-ngekos-orange">Rp {{ number_format($boardingHouse->price, 0, ',', '.') }}<span
+                                    class="text-sm text-ngekos-grey font-normal">/bulan</span></p>
+                        </div>
                     </div>
-                </div>
-            </a>
-        @endforeach
+                </a>
+            @endforeach
         </div>
     </section>
-    <div id="BottomNav" class="relative flex w-full h-[138px] shrink-0">
-        <nav class="fixed bottom-5 w-full max-w-[640px] px-5 z-10">
-            <div class="grid grid-cols-4 h-fit rounded-[40px] justify-between py-4 px-5 bg-ngekos-black">
-                <a href="index.html" class="flex flex-col items-center text-center gap-2">
-                    <img src="assets/images/icons/global-green.svg" class="w-8 h-8 flex shrink-0" alt="icon">
-                    <span class="font-semibold text-sm text-white">Discover</span>
-                </a>
-                <a href="check-booking.html" class="flex flex-col items-center text-center gap-2">
-                    <img src="assets/images/icons/note-favorite.svg" class="w-8 h-8 flex shrink-0" alt="icon">
-                    <span class="font-semibold text-sm text-white">Orders</span>
-                </a>
-                <a href="find-kos.html" class="flex flex-col items-center text-center gap-2">
-                    <img src="assets/images/icons/search-status.svg" class="w-8 h-8 flex shrink-0" alt="icon">
-                    <span class="font-semibold text-sm text-white">Find</span>
-                </a>
-                <a href="#" class="flex flex-col items-center text-center gap-2">
-                    <img src="assets/images/icons/24-support.svg" class="w-8 h-8 flex shrink-0" alt="icon">
-                    <span class="font-semibold text-sm text-white">Help</span>
-                </a>
-            </div>
-        </nav>
-    </div>
     @include('includes.nav')
 @endsection
