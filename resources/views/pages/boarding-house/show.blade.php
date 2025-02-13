@@ -41,19 +41,23 @@
         <hr class="border-[#F1F2F6] mx-5">
         <div id="Features" class="grid grid-cols-2 gap-x-[10px] gap-y-4 px-5">
             <div class="flex items-center gap-[6px]">
-                <img src="{{ asset('assets/images/icons/location.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
+                <img src="{{ asset('assets/images/icons/location.svg') }}" class="w-[26px] h-[26px] flex shrink-0"
+                    alt="icon">
                 <p class="text-ngekos-grey">{{ $boardingHouse->city->name }}</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <img src="{{ asset('assets/images/icons/3dcube.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
+                <img src="{{ asset('assets/images/icons/3dcube.svg') }}" class="w-[26px] h-[26px] flex shrink-0"
+                    alt="icon">
                 <p class="text-ngekos-grey">In {{ $boardingHouse->category->name }}</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <img src="{{ asset('assets/images/icons/profile-2user.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
+                <img src="{{ asset('assets/images/icons/profile-2user.svg') }}" class="w-[26px] h-[26px] flex shrink-0"
+                    alt="icon">
                 <p class="text-ngekos-grey">4 People</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <img src="{{ asset('assets/images/icons/shield-tick.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
+                <img src="{{ asset('assets/images/icons/shield-tick.svg') }}" class="w-[26px] h-[26px] flex shrink-0"
+                    alt="icon">
                 <p class="text-ngekos-grey">Privacy 100%</p>
             </div>
         </div>
@@ -74,7 +78,7 @@
                         class="tab-link rounded-full p-[8px_14px] border border-[#F1F2F6] text-sm font-semibold hover:bg-ngekos-black hover:text-white transition-all duration-300"
                         data-target-tab="#Testimonials-Tab">Testimonials</button>
                 </div>
-                <div class="swiper-slide !w-fit">
+                {{-- <div class="swiper-slide !w-fit">
                     <button
                         class="tab-link rounded-full p-[8px_14px] border border-[#F1F2F6] text-sm font-semibold hover:bg-ngekos-black hover:text-white transition-all duration-300"
                         data-target-tab="#Rules-Tab">Rules</button>
@@ -88,133 +92,53 @@
                     <button
                         class="tab-link rounded-full p-[8px_14px] border border-[#F1F2F6] text-sm font-semibold hover:bg-ngekos-black hover:text-white transition-all duration-300"
                         data-target-tab="#Rewards-Tab">Rewards</button>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div id="TabsContent" class="px-5">
             <div id="Bonus-Tab" class="tab-content flex flex-col gap-5">
                 <div class="flex flex-col gap-4">
-                    <div
-                        class="bonus-card flex items-center rounded-[22px] border border-[#F1F2F6] p-[10px] gap-3 hover:border-[#91BF77] transition-all duration-300">
-                        <div class="flex w-[120px] h-[90px] shrink-0 rounded-[18px] bg-[#D9D9D9] overflow-hidden">
-                            <img src="assets/images/thumbnails/bonus-1.png" class="w-full h-full object-cover"
-                                alt="thumbnails">
+                    @foreach ($boardingHouse->bonuses as $bonus)
+                        <div
+                            class="bonus-card flex items-center rounded-[22px] border border-[#F1F2F6] p-[10px] gap-3 hover:border-[#91BF77] transition-all duration-300">
+                            <div class="flex w-[120px] h-[90px] shrink-0 rounded-[18px] bg-[#D9D9D9] overflow-hidden">
+                                <img src="{{ Storage::url($bonus->image) }}" class="w-full h-full object-cover"
+                                    alt="thumbnails">
+                            </div>
+                            <div>
+                                <p class="font-semibold">{{ $bonus->name }}</p>
+                                <p class="text-sm text-ngekos-grey">{{ $bonus->description }}</p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="font-semibold">Clean Laundry</p>
-                            <p class="text-sm text-ngekos-grey">Super Fast • 4 People</p>
-                        </div>
-                    </div>
-                    <div
-                        class="bonus-card flex items-center rounded-[22px] border border-[#F1F2F6] p-[10px] gap-3 hover:border-[#91BF77] transition-all duration-300">
-                        <div class="flex w-[120px] h-[90px] shrink-0 rounded-[18px] bg-[#D9D9D9] overflow-hidden">
-                            <img src="assets/images/thumbnails/bonus-2.png" class="w-full h-full object-cover"
-                                alt="thumbnails">
-                        </div>
-                        <div>
-                            <p class="font-semibold">Healthy Catering</p>
-                            <p class="text-sm text-ngekos-grey">Animal Base • 4 People</p>
-                        </div>
-                    </div>
-                    <div
-                        class="bonus-card flex items-center rounded-[22px] border border-[#F1F2F6] p-[10px] gap-3 hover:border-[#91BF77] transition-all duration-300">
-                        <div class="flex w-[120px] h-[90px] shrink-0 rounded-[18px] bg-[#D9D9D9] overflow-hidden">
-                            <img src="assets/images/thumbnails/bonus-3.png" class="w-full h-full object-cover"
-                                alt="thumbnails">
-                        </div>
-                        <div>
-                            <p class="font-semibold">Coworking Space</p>
-                            <p class="text-sm text-ngekos-grey">Comfortable • 4 People</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div id="Testimonials-Tab" class="tab-content flex-col gap-5 hidden">
                 <div class="flex flex-col gap-4">
-                    <div
-                        class="testi-card flex flex-col rounded-[22px] border border-[#F1F2F6] p-4 gap-3 bg-white hover:border-[#91BF77] transition-all duration-300">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-[70px] h-[70px] flex shrink-0 rounded-full border-4 border-white ring-1 ring-[#F1F2F6] overflow-hidden">
-                                <img src="assets/images/photos/sami.png" class="w-full h-full object-cover"
-                                    alt="icon">
+                    @foreach ($boardingHouse->testimonials as $testimonial)
+                        <div
+                            class="testi-card flex flex-col rounded-[22px] border border-[#F1F2F6] p-4 gap-3 bg-white hover:border-[#91BF77] transition-all duration-300">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-[70px] h-[70px] flex shrink-0 rounded-full border-4 border-white ring-1 ring-[#F1F2F6] overflow-hidden">
+                                    <img src="{{ Storage::url($testimonial->photo) }}" class="w-full h-full object-cover"
+                                        alt="icon">
+                                </div>
+                                <div>
+                                    <p class="font-semibold">{{ $testimonial->name }}</p>
+                                    <p class="mt-[2px] text-sm text-ngekos-grey">{{ $testimonial->created_at }}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="font-semibold">Samina Ryin</p>
-                                <p class="mt-[2px] text-sm text-ngekos-grey">9 September 2024</p>
-                            </div>
-                        </div>
-                        <p class="leading-[26px]">Enak banget ngekos di sini sampe lupa rumah emak saking nyamannya
-                            lol...</p>
-                        <div class="flex">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                        </div>
-                    </div>
-                    <div
-                        class="testi-card flex flex-col rounded-[22px] border border-[#F1F2F6] p-4 gap-3 bg-white hover:border-[#91BF77] transition-all duration-300">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-[70px] h-[70px] flex shrink-0 rounded-full border-4 border-white ring-1 ring-[#F1F2F6] overflow-hidden">
-                                <img src="assets/images/photos/sami.png" class="w-full h-full object-cover"
-                                    alt="icon">
-                            </div>
-                            <div>
-                                <p class="font-semibold">Samina Ryin</p>
-                                <p class="mt-[2px] text-sm text-ngekos-grey">9 September 2024</p>
+                            <p class="leading-[26px]">{{ $testimonial->content }}</p>
+                            <div class="flex">
+                                @for ($i = 0; $i < $testimonial->rating; $i++)
+                                    <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
+                                        class="w-[22px] h-[22px] flex shrink-0" alt="">
+                                @endfor
+
                             </div>
                         </div>
-                        <p class="leading-[26px]">Enak banget ngekos di sini sampe lupa rumah emak saking nyamannya
-                            lol...</p>
-                        <div class="flex">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                        </div>
-                    </div>
-                    <div
-                        class="testi-card flex flex-col rounded-[22px] border border-[#F1F2F6] p-4 gap-3 bg-white hover:border-[#91BF77] transition-all duration-300">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-[70px] h-[70px] flex shrink-0 rounded-full border-4 border-white ring-1 ring-[#F1F2F6] overflow-hidden">
-                                <img src="assets/images/photos/sami.png" class="w-full h-full object-cover"
-                                    alt="icon">
-                            </div>
-                            <div>
-                                <p class="font-semibold">Samina Ryin</p>
-                                <p class="mt-[2px] text-sm text-ngekos-grey">9 September 2024</p>
-                            </div>
-                        </div>
-                        <p class="leading-[26px]">Enak banget ngekos di sini sampe lupa rumah emak saking nyamannya
-                            lol...</p>
-                        <div class="flex">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px] flex shrink-0"
-                                alt="">
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div id="Rules-Tab" class="tab-content flex-col gap-5 hidden">Lorem ipsum dolor sit amet consectetur
@@ -230,7 +154,7 @@
         <div class="fixed bottom-5 w-full max-w-[640px] px-5 z-10">
             <div class="flex items-center justify-between rounded-[40px] py-4 px-6 bg-ngekos-black">
                 <p class="font-bold text-xl leading-[30px] text-white">
-                    Rp 1.493.593
+                    Rp {{ number_format($boardingHouse->price, 0, ',', '.') }}
                     <br>
                     <span class="text-sm font-normal">/bulan</span>
                 </p>
