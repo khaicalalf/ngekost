@@ -36,7 +36,7 @@
     </div>
     <section id="Popular" class="flex flex-col gap-4">
         <div class="flex items-center justify-between px-5">
-            <h2 class="font-bold">Popular Kos</h2>
+            <h2 class="font-bold">Popular Ngekost</h2>
             <a href="#">
                 <div class="flex items-center gap-2">
                     <span>See all</span>
@@ -99,7 +99,7 @@
         </div>
         <div class="grid grid-cols-2 gap-4">
             @foreach ($cities as $city)
-                <a href="cities.html" class="card">
+                <a href="{{ route('city.show', $city->slug) }}" class="card">
                     <div
                         class="flex items-center rounded-[22px] p-[10px] gap-3 bg-white border border-white overflow-hidden hover:border-[#91BF77] transition-all duration-300">
                         <div
@@ -117,7 +117,7 @@
     </section>
     <section id="Best" class="flex flex-col gap-4 px-5 mt-[30px]">
         <div class="flex items-center justify-between">
-            <h2 class="font-bold">All Great Koskos</h2>
+            <h2 class="font-bold">All Great Ngekost</h2>
             <a href="#">
                 <div class="flex items-center gap-2">
                     <span>See all</span>
