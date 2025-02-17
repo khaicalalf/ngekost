@@ -6,7 +6,7 @@ use App\interfaces\TransactionRepositoryInterface;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
-    public function getTrasactionDataFromSession()
+    public function getTransactionDataFromSession()
     {
         return session()->get('transaction');
     }

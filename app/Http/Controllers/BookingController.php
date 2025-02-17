@@ -30,10 +30,10 @@ class BookingController extends Controller
 
     public function information($slug)
     {
-        $transaction = $this->transactionRepository->getTrasactionDataFromSession();
+        $transaction = $this->transactionRepository->getTransactionDataFromSession();
         $boardingHouse = $this->boardingHouseRepository->getBoardingHouseBySlug($slug);
-        $room = $this->boardingHouseRepository->getBoardingHouseRoomById($transaction['room_id']);
-
+        $room = $this->boardingHouseRepository->getBoardingHouseRoomById($transaction['room']);
+        //dd($transaction);
         return view('pages.booking.information', compact('boardingHouse', 'transaction', 'room'));
     }
 
