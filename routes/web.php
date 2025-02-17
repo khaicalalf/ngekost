@@ -24,4 +24,8 @@ Route::get('/find-results', [BoardingHouseController::class, 'findResults'])->na
 Route::get('/kost/{slug}', [BoardingHouseController::class, 'show'])->name('kost.show');
 Route::get('/kost/{slug}/rooms', [BoardingHouseController::class, 'rooms'])->name('kost.rooms');
 
+Route::get('/kost/booking/{slug}', [BookingController::class, 'booking'])->name('booking');
+Route::get('kost/booking/{slug}/information', [BookingController::class, 'information'])->name('booking.information');
+Route::post('kost/booking/{slug}/information/save', [BookingController::class, 'saveInformation'])->name('booking.information.save');
+
 Route::get('/check-booking', [BookingController::class, 'check'])->name('check-booking');

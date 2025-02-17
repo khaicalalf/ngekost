@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Repositories;
+
+use App\interfaces\TransactionRepositoryInterface;
+
+class TransactionRepository implements TransactionRepositoryInterface
+{
+    public function getTrasactionDataFromSession()
+    {
+        return session()->get('transaction');
+    }
+
+    public function saveTransactionDataToSession($data)
+    {
+        $transaction = session()->get('transaction', []);
+
+        foreach ($data as $key => $value) {
+            $transaction[$key] = $value;
+        }
+
+        session()->put('transaction', $transaction);
+    }
+}
